@@ -5,7 +5,16 @@
 ██╔═══╝   ╚██╔╝     ██║   ██║   ██║██╔══██╗██║     ██╔══██║
 ██║        ██║      ██║   ╚██████╔╝██║  ██║╚██████╗██║  ██║
 ╚═╝        ╚═╝      ╚═╝    ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+
+       █████╗ ██╗     ██████╗ ██╗███╗   ██╗███████╗
+      ██╔══██╗██║     ██╔══██╗██║████╗  ██║██╔════╝
+      ███████║██║     ██████╔╝██║██╔██╗ ██║█████╗
+      ██╔══██║██║     ██╔═══╝ ██║██║╚██╗██║██╔══╝
+      ██║  ██║███████╗██║     ██║██║ ╚████║███████╗
+      ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═══╝╚══════╝
 ```
+
+----------------------------------------------------------------------------------------
 
 [![](https://images.microbadger.com/badges/image/petronetto/pytorch-alpine:latest.svg)](https://microbadger.com/images/petronetto/pytorch-alpine:latest "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/petronetto/pytorch-alpine:latest.svg)](https://microbadger.com/images/petronetto/pytorch-alpinee:latest "Get your own version badge on microbadger.com")
@@ -20,7 +29,7 @@
 Simply run the following command and open your browser in http://localhost:5000.
 
 ```
-docker run -it \
+docker run -it --name pytorch \
            -v $(PWD):/notebooks \
            -p 5000:5000 \
            petronetto/pytorch-alpine

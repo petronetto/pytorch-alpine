@@ -13,7 +13,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main | tee /etc/apk/repositor
     && echo http://dl-cdn.alpinelinux.org/alpine/edge/testing | tee -a /etc/apk/repositories \
     && echo http://dl-cdn.alpinelinux.org/alpine/edge/community | tee -a /etc/apk/repositories \
     && apk add --update --no-cache tini bash \
-        curl ca-certificates python3 py3-numpy py3-numpy-f2py libstdc++ \
+        curl ca-certificates python3 py3-numpy py3-numpy-f2py libstdc++ libgomp \
 ## Setup de basic requeriments
     && python3 -m ensurepip \
     && rm -r /usr/lib/python*/ensurepip \
