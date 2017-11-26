@@ -12,9 +12,9 @@ LABEL org.label-schema.name="PyTorch Alpine" \
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main | tee /etc/apk/repositories \
     && echo http://dl-cdn.alpinelinux.org/alpine/edge/testing | tee -a /etc/apk/repositories \
     && echo http://dl-cdn.alpinelinux.org/alpine/edge/community | tee -a /etc/apk/repositories \
-    && apk add --update --no-cache tini bash \
+    && apk add -U --no-cache tini bash \
         curl ca-certificates python3 py3-numpy py3-numpy-f2py \
-        freetype libpng libstdc++ libgomp \
+        freetype jpeg libpng libstdc++ libgomp \
 ## Setup de basic requeriments
     && python3 -m ensurepip \
     && rm -r /usr/lib/python*/ensurepip \
@@ -23,15 +23,18 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main | tee /etc/apk/repositor
     && if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi \
     && ln -s locale.h /usr/include/xlocale.h \
 ## Dev dependencies and others stuffs...
-    && apk add --no-cache --virtual=.build-dependencies \
-        build-base linux-headers python3-dev git cmake \
+    && apk add -U --no-cache --virtual=.build-dependencies \
+        build-base linux-headers python3-dev git cmake jpeg-dev \
         libffi-dev openblas-dev py-numpy-dev freetype-dev libpng-dev \
     && pip install -U --no-cache-dir pyyaml pymkl cffi \
-        matplotlib ipywidgets notebook requests \
+        matplotlib ipywidgets notebook requests pillow \
     && jupyter nbextension enable --py widgetsnbextension \
 ## Installing PyTorch
     && git clone --recursive https://github.com/pytorch/pytorch \
     && cd pytorch && python setup.py install \
+## Installing Torch Vision
+    && git clone --recursive https://github.com/pytorch/vision \
+    && cd vision && python setup.py install \
 ## Cleaning
     && rm -rf /pytorch \
     && rm /usr/include/xlocale.h \
