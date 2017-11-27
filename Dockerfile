@@ -27,7 +27,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main | tee /etc/apk/repositor
         build-base linux-headers python3-dev git cmake jpeg-dev \
         libffi-dev openblas-dev py-numpy-dev freetype-dev libpng-dev \
     && pip install -U --no-cache-dir pyyaml pymkl cffi \
-        matplotlib ipywidgets notebook requests pillow \
+        matplotlib ipywidgets notebook requests pillow pandas \
     && jupyter nbextension enable --py widgetsnbextension \
 ## Installing PyTorch
     && git clone --recursive https://github.com/pytorch/pytorch \
