@@ -1,13 +1,12 @@
 FROM alpine:3.6
 
-LABEL maintainer="Juliano Petronetto <juliano@petronetto.com.br>"
-LABEL org.label-schema.name="PyTorch Alpine" \
-      org.label-schema.description="PyTorch in Alpine Linux" \
-      org.label-schema.url="https://hub.docker.com/r/petronetto/pytorch-alpine" \
-      org.label-schema.vcs-url="https://github.com/petronetto/pytorch-alpine" \
-      org.label-schema.vendor="Petronetto DevTech" \
-      org.label-schema.version="1.0" \
-      org.label-schema.schema-version="1.0"
+LABEL maintainer="Juliano Petronetto <juliano@petronetto.com.br>" \
+      name="PyTorch Alpine" \
+      description="PyTorch in Alpine Linux" \
+      url="https://hub.docker.com/r/petronetto/pytorch-alpine" \
+      vcs-url="https://github.com/petronetto/pytorch-alpine" \
+      vendor="Petronetto DevTech" \
+      version="1.0"
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main | tee /etc/apk/repositories \
     && echo http://dl-cdn.alpinelinux.org/alpine/edge/testing | tee -a /etc/apk/repositories \
@@ -26,7 +25,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main | tee /etc/apk/repositor
     && apk add -U --no-cache --virtual=.build-dependencies \
         build-base linux-headers python3-dev git cmake jpeg-dev \
         libffi-dev openblas-dev py-numpy-dev freetype-dev libpng-dev \
-    && pip install -U --no-cache-dir pyyaml pymkl cffi \
+    && pip install -U --no-cache-dir pyyaml pymkl cffi scikit-learn \
         matplotlib ipywidgets notebook requests pillow pandas \
     && jupyter nbextension enable --py widgetsnbextension \
 ## Installing PyTorch
