@@ -34,3 +34,6 @@ docker run -it --name pytorch \
 
 ## License
 [BSD 3-Clause License](https://raw.githubusercontent.com/petronetto/pytorch-alpine/master/LICENSE)
+
+
+Enjoy 😃
