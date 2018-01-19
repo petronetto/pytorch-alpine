@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Docker Build
+          command: |
+            TAG="${CIRCLE_BUILD_NUM}"
+            docker build -t petronetto/pytorch-alpine:ci-$TAG .
+      - run:
+          name: Docker Images
+          command: |
+            docker images
+      - run:
+          name: Docker Login
+          command: docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+      - run:
+          name: Docker send image to dockerhub
+          command: |
+            TAG="${CIRCLE_BUILD_NUM}"
+            docker push petronetto/pytorch-alpine:ci-$TAG
+      - run:
+          name: Latest tag
+          command: |
+            TAG="${CIRCLE_BUILD_NUM}"
+            docker tag petronetto/pytorch-alpine:ci-$TAG petronetto/pytorch-alpine:latest-ci
+            docker tag petronetto/pytorch-alpine:ci-$TAG petronetto/pytorch-alpine:latest
+            docker push petronetto/pytorch-alpine:latest-ci
+            docker push petronetto/pytorch-alpine:latest
