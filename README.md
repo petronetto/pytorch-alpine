@@ -19,6 +19,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/petronetto/pytorch-alpine.svg)](https://github.com/petronetto/pytorch-alpine/issues)
 [![GitHub license](https://img.shields.io/github/license/petronetto/pytorch-alpine.svg)](https://raw.githubusercontent.com/petronetto/pytorch-alpine/master/LICENSE)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/petronetto/pytorch-alpine.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fpetronetto%2Fpytorch-alpine)
+[![CircleCI](https://circleci.com/gh/petronetto/pytorch-alpine.svg?style=svg)](https://circleci.com/gh/petronetto/pytorch-alpine)
 
 
 ## Running the container
