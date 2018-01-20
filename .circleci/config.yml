@@ -13,14 +13,14 @@ jobs:
       - run:
           name: Push the develop tag
           command: |
-            if [ "$ {CIRCLE_BRANCH}" == "develop" ]; then
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
               docker tag petronetto/pytorch-alpine petronetto/pytorch-alpine:develop
               docker push petronetto/pytorch-alpine:develop
             fi
       - run:
           name: Push the latest tag
           command: |
-            if [ "$ {CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker tag petronetto/pytorch-alpine petronetto/pytorch-alpine:latest
               docker push petronetto/pytorch-alpine:latest
             fi
