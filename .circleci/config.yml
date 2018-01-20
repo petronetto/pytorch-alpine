@@ -18,7 +18,7 @@ jobs:
               docker push petronetto/pytorch-alpine:develop
             fi
       - run:
-          name: Push the develop tag
+          name: Push the latest tag
           command: |
             if [ "$ {CIRCLE_BRANCH}" == "master" ]; then
               docker tag petronetto/pytorch-alpine petronetto/pytorch-alpine:latest
