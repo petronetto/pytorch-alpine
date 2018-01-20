@@ -5,27 +5,27 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Docker Build
-          command: |
-            TAG="${CIRCLE_BUILD_NUM}"
-            docker build -t petronetto/pytorch-alpine:ci-$TAG .
-      - run:
-          name: Docker Images
-          command: |
-            docker images
-      - run:
           name: Docker Login
           command: docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
       - run:
-          name: Docker send image to dockerhub
-          command: |
-            TAG="${CIRCLE_BUILD_NUM}"
-            docker push petronetto/pytorch-alpine:ci-$TAG
+          name: Docker Build
+          command: docker build -t petronetto/pytorch-alpine .
       - run:
-          name: Latest tag
+          name: Push the develop tag
           command: |
-            TAG="${CIRCLE_BUILD_NUM}"
-            docker tag petronetto/pytorch-alpine:ci-$TAG petronetto/pytorch-alpine:latest-ci
-            docker tag petronetto/pytorch-alpine:ci-$TAG petronetto/pytorch-alpine:latest
-            docker push petronetto/pytorch-alpine:latest-ci
-            docker push petronetto/pytorch-alpine:latest
+            if [ "$ {CIRCLE_BRANCH}" == "develop" ]; then
+              docker tag petronetto/pytorch-alpine petronetto/pytorch-alpine:develop
+              docker push petronetto/pytorch-alpine:develop
+            fi
+      - run:
+          name: Push the develop tag
+          command: |
+            if [ "$ {CIRCLE_BRANCH}" == "master" ]; then
+              docker tag petronetto/pytorch-alpine petronetto/pytorch-alpine:latest
+              docker push petronetto/pytorch-alpine:latest
+            fi
+      - run:
+          name: Backup tag
+          command: |
+            docker tag petronetto/pytorch-alpine petronetto/pytorch-alpine:v-$CIRCLE_BUILD_NUM
+            docker push petronetto/pytorch-alpine:v-$CIRCLE_BUILD_NUM
