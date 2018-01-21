@@ -28,7 +28,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-FROM petronetto/py3-builder
+FROM petronetto/alpine-machine-learning-base
 
 LABEL maintainer="Juliano Petronetto <juliano@petronetto.com.br>" \
       name="PyTorch Alpine" \
@@ -38,16 +38,14 @@ LABEL maintainer="Juliano Petronetto <juliano@petronetto.com.br>" \
       vendor="Petronetto DevTech" \
       version="1.0"
 
-RUN apk --update upgrade \
-## Install PyTorch
+RUN echo "|--> Updating" \
+    && apk update && apk upgrade \
     && echo "|--> Install PyTorch" \
     && git clone --recursive https://github.com/pytorch/pytorch \
     && cd pytorch && python setup.py install \
-## Install Torch Vision
     && echo "|--> Install Torch Vision" \
     && git clone --recursive https://github.com/pytorch/vision \
     && cd vision && python setup.py install \
-## Cleaning
     && echo "|--> Cleaning" \
     && rm -rf /pytorch \
     && rm -rf /root/.cache \
