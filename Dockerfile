@@ -50,7 +50,6 @@ RUN apk --update upgrade \
 ## Cleaning
     && echo "|--> Cleaning" \
     && rm -rf /pytorch \
-    && rm /usr/include/xlocale.h \
     && rm -rf /root/.cache \
     && rm -rf /var/cache/apk/* \
     && apk del .build-deps \
